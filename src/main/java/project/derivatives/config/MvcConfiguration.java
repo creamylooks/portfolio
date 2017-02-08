@@ -1,8 +1,17 @@
 package project.derivatives.config;
 
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.orm.hibernate4.HibernateTransactionManager;
+import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -26,6 +35,42 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
+	
+	@Bean(name = "dataSource")
+    public DataSource getDataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/mscproject_data");
+        dataSource.setUsername("root");
+        dataSource.setPassword(null);
+        return dataSource;
+    }
+	 private Properties getHibernateProperties() {
+	        Properties properties = new Properties();
+	        properties.put("hibernate.show_sql", "true");
+	        properties.put("hibernate.dialect",
+	                "org.hibernate.dialect.MySQLDialect");
+	        properties.put("hibernate.hbm2ddl.auto", "update");
+	        return properties;
+	    }
+
+	    @Bean(name = "sessionFactory")
+	    public SessionFactory getSessionFactory(DataSource dataSource) {
+	        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(
+	                dataSource);
+	        sessionBuilder.addProperties(getHibernateProperties());
+	        sessionBuilder.addAnnotatedClasses(project.derivatives.model.User.class);
+	        return sessionBuilder.buildSessionFactory();
+	    }
+	    @Bean(name="transactionManger")
+	    @Autowired
+	    public HibernateTransactionManager getTransactionManager(
+	            SessionFactory sessionFactory) {
+	        HibernateTransactionManager transactionManager = new HibernateTransactionManager(
+	                sessionFactory);
+	        return transactionManager;
+	    }
+
 
 	
 }

@@ -1,8 +1,14 @@
 package project.derivatives.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class User {
-	
-	
+	@Id
+	@GeneratedValue
+	private long userId;
 	private String fname;
 	private String lname;
 	private String user;

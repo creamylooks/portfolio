@@ -3,34 +3,32 @@ package project.derivatives.busObjImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.derivatives.busObj.UserBo;
 import project.derivatives.dao.UserDao;
 import project.derivatives.model.User;
 
+@Service("userBo")
+@Transactional(propagation=Propagation.SUPPORTS, rollbackFor = Exception.class)
 public class UserBoImpl  implements UserBo{
 	
 	@Autowired
 	UserDao userDao;
 
 	@Override
-	public boolean create(User user) {
-		try{
+	public void create(User user) {
+		
 		userDao.create(user);
-		return false;
-		}catch(Exception ex){
-			return false;
-		}
 	}
 
 	@Override
-	public boolean update(User user) {
-		try{
+	public void update(User user) {
+		
 			userDao.update(user);
-			return false;
-			}catch(Exception ex){
-				return false;
-			}
+			
 	}
 
 	@Override
@@ -40,20 +38,21 @@ public class UserBoImpl  implements UserBo{
 	}
 
 	@Override
-	public boolean delete(Long userId) {
+	public void delete(Long userId) {
 		
-		try{
+		
 			userDao.delete(userId);
-			return false;
-			}catch(Exception ex){
-				return false;
-			}
+			
 	}
 
 	@Override
 	public User findUser(Long userId) {
 		
 		return userDao.findUser(userId);
+	}
+	@Override 
+	public User findUser(String user, String password){
+		return userDao.findUser(user, password);
 	}
 
 	@Override

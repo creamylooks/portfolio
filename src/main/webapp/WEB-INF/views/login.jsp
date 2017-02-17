@@ -6,12 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>Login</title>
+
+
 </head>
 <body>
 
 
 		<br /><br /><br /><br />
-		<form name = "login" action="login/verify" method = "post">
+		<form name = "login" action="dashboard" method = "post">
 		<input type="hidden" name="pagename" value = "lgin"></input>
 		&nbsp;&nbsp;<h2 align ="center"> &nbsp;&nbsp;Login</h2>
 		<table align ="center">

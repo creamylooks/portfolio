@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.jboss.logging.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,23 +21,17 @@ public class UserDaoImpl  implements UserDao{
 		return sessionFactory.getCurrentSession();
 	}
 	@Override
-	public boolean create(User user) {
-		try{
+	public void create(User user) {
+		
 		currentSession().save(user);
-		return true;
-		}catch (Exception ex){
-			return false;
-		}
+		
 	}
 
 	@Override
-	public boolean update(User user) {
-		try{
+	public void update(User user) {
+		
 			currentSession().update(user);
-			return true;
-			}catch (Exception ex){
-				return false;
-			}
+			
 	}
 
 	@Override
@@ -46,20 +41,26 @@ public class UserDaoImpl  implements UserDao{
 	}
 
 	@Override
-	public boolean delete(Long userId) {
+	public void delete(Long userId) {
 		
-		try{
+		
 			currentSession().delete(userId);
-			return true;
-			}catch (Exception ex){
-				return false;
-			}
+			
 	}
 
 	@Override
 	public User findUser(Long userId) {
 		
 		return (User)currentSession().get(User.class, userId);
+	}
+	@Override
+	public User findUser(String user, String password){
+		
+		User u;
+		u=(User)currentSession().get(User.class, user);
+		if(u.getPass1().equals(password)){
+			return u;
+		}else{return null;}	
 	}
 
 	@Override

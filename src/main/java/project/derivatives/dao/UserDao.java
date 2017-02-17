@@ -6,11 +6,12 @@ import project.derivatives.model.User;
 
 public interface UserDao {
 	
-	public boolean create(User user);
-	public boolean update(User user);
+	public void create(User user);
+	public void update(User user);
 	public User edit (Long userId);
-	public boolean delete (Long userId);
+	public void delete (Long userId);
 	public User findUser(Long userId);
+	public User findUser(String username, String password);
 	public List<User> getAll();
 
 }

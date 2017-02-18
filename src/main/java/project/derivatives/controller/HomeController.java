@@ -40,8 +40,9 @@ public class HomeController {
 	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 			public ModelAndView testdash(@RequestParam("userID") String uid, @RequestParam("pwd") String pwd) throws IOException{
 				String ans="";
+		
 				ModelAndView model = new ModelAndView(ans);
-					if (userBo.findUser(uid, pwd).equals(null)){
+					if (userBo.findUser(uid, pwd)==null){
 								ans = "login";
 								model.addObject("Invalid", "Invalid Login Credentials");
 							}

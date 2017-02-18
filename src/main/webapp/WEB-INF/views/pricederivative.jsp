@@ -108,15 +108,15 @@ function selectFunc(){
 				<select name="contractType" id="contType" onchange="contractSelect();">
 					<option value = "none">Please Select a Type</option>
 					<option value = "Futures">Future</option>
-					<option value = "Option">Option</option>
+					<option value = "Options">Option</option>
 				</select>
 				Interest Rate:<input type="text" name = "rate"/>
-				Days To Expiration <input type="text" name="days"/>
+				Days To Expiration <input type="text" name="daysToExp"/>
 				<div> Day Count Convention :
 							   <select name="dayConv" id="dayCountConv">
 									  <option value="none">Please select</option>
-									  <option value="trade">Trading Days</option>
-									  <option value="calendar">Calendar Days</option>
+									  <option value="Trading">Trading Days</option>
+									  <option value="Calendar">Calendar Days</option>
 							   </select>
 				</div>
 				  <div id = "total">

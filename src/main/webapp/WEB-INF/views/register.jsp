@@ -11,8 +11,7 @@
 </head>
 <body>
 		<br/><br /><br /><br /><br />
-		<form name = "registration" action="/derivatives" method = "post">
-			<input type="hidden" name="pagename" value = "register"></input>
+		<form name = "registration" action="derivatives/login" method = "post">
 			<table align= "center" >
 				<tr>
 					<td align= "right" >Firstname:</td><td align= "right" > <input type="text" name="fname"/></td>

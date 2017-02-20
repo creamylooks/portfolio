@@ -1,6 +1,8 @@
 package project.derivatives.controller;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -19,9 +21,36 @@ import project.derivatives.model.User;
 public class HomeController {
 	@Autowired
 	UserBo userBo;
+	
+	@RequestMapping(value="/derivatives/register", method = RequestMethod.GET)
+	public ModelAndView test_reg(){
+		return new ModelAndView("register");
+	}
 
-	@RequestMapping(value="/", method = RequestMethod.POST)
-	public ModelAndView test(HttpServletResponse response) throws IOException{
+	
+	@RequestMapping(value="/derivatives/login", method = RequestMethod.POST)
+	public ModelAndView test(Map<String, Object> map,@RequestParam("fname") String fn,
+							 @RequestParam("lname") String ln,
+							 @RequestParam("user") String un,
+							 @RequestParam("rdoGender") String gen,
+							 @RequestParam("email") String em,
+							 @RequestParam("mobile") String mob,
+							 @RequestParam("pass1") String pas) throws IOException{
+		User u =new User(); 
+		u.setFname(fn);
+		u.setLname(ln);
+		u.setUser(un);
+		u.setRdoGender(gen);
+		u.setEmail(em);
+		u.setMobile(mob);
+		try{
+		MessageDigest password = MessageDigest.getInstance("MD5");
+		password.update(pas.getBytes(), 0, pas.length());
+		u.setPass1(password.digest().toString());
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+		userBo.create(u);
 		return new ModelAndView("login");
 	}
 	@RequestMapping(value="/", method = RequestMethod.GET)
@@ -39,15 +68,25 @@ public class HomeController {
 	
 	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 			public ModelAndView testdash(@RequestParam("userID") String uid, @RequestParam("pwd") String pwd) throws IOException{
-				String ans="";
-		
-				ModelAndView model = new ModelAndView(ans);
+				
+				MessageDigest password;
+				String pas1 = null;
+				try {
+					password = MessageDigest.getInstance("MD5");
+					password.update(pwd.getBytes(), 0, pwd.length());
+					pas1=password.digest().toString();
+				} catch (NoSuchAlgorithmException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				ModelAndView model = null;
 					if (userBo.findUser(uid, pwd)==null){
-								ans = "login";
+								model = new ModelAndView("login");
 								model.addObject("Invalid", "Invalid Login Credentials");
 							}
 					else{
-						ans="dashboard";
+						model = new ModelAndView("dashboard");
 						model.addObject("usedBy",uid);
 					}
 						

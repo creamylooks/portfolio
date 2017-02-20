@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -14,7 +15,7 @@
 
 		<br /><br /><br /><br />
 		<form name = "login" action="dashboard" method = "post">
-		<input type="hidden" name="pagename" value = "lgin"></input>
+		
 		&nbsp;&nbsp;<h2 align ="center"> &nbsp;&nbsp;Login</h2>
 		<table align ="center">
 			<tr>
@@ -30,6 +31,7 @@
 			</tr>
 			</table>
 		</form>
+		<p align ="center">${Invalid}</p>
 		
 </body>
 </html>

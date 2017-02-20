@@ -105,8 +105,9 @@ public class UserDaoImpl  implements UserDao{
 	}
 	@Override
 	public User findUser(String user, String password){
-	/*	
-		User u;
+		
+		User u=null;
+		/*
 		u=(User)currentSession().get(User.class, user);
 		if(u.getPass1().equals(password)){
 			return u;
@@ -118,24 +119,27 @@ public class UserDaoImpl  implements UserDao{
 	     //   logger.info(sessionFactory.getCurrentSession().createQuery(hql));
 	        session = sessionFactory.openSession();
 	        Transaction tx= session.beginTransaction();
-	        
+	       try{ 
 	        Query query = session.createQuery(hql);
 	        query.setParameter(0, user);
 	        query.setParameter(1, password);
-	        List userList = query.list();
-	        try{
-	        if ((userList != null) && (userList.size()== 0)){
+	       u= (User) query.uniqueResult();
+	        //List userList = query.list();
+	        
+	        //if ((userList != null) && (userList.size()== 0)){
 	        	tx.commit();
 	    		session.close();
-	        	
+	    		// return (User) userList.get(0);
+	    		
 	        }
-	        }catch(Exception e){
+	        catch (Exception e){
 	        	tx.rollback();
 	    		session.close();
 	    		e.printStackTrace();
+	    		
 	        }
-	        return (User) userList.get(0);
-			
+	       
+	       return u;
 	    }
 	
 

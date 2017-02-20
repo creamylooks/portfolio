@@ -9,6 +9,18 @@ public abstract class Calculator {
 	private DayCountConv dayConv;
 	public abstract double calcFutures();
 	public abstract ArrayList<Double> calcOptions();
+	public Calculator(double intrate, double maturity,DayCountConv day){
+		if(intrate>1){
+			this.ir=intrate/100;
+		}else{
+		this.ir=intrate;}
+		if(day.equals(DayCountConv.Calendar)){
+		this.daysToExp=maturity/365;
+		}
+		else if (day.equals(DayCountConv.Trading)){
+			this.daysToExp=maturity/252;
+		}
+	}
 
 	public ContractType getContractType() {
 		return contractType;

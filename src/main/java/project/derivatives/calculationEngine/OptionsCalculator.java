@@ -60,6 +60,7 @@ public class OptionsCalculator extends Calculator {
 			}
 			else if(this.isDividend){
 				
+				
 			}
 			
 			greeks.add(black.getCalle());

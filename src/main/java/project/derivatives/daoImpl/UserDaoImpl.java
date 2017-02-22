@@ -114,15 +114,15 @@ public class UserDaoImpl  implements UserDao{
 		}else {return null;}
 		*/
 		
-	//	 boolean userFound = false;
-	        String hql = "from users where user =? and pass1=?";
-	     //   logger.info(sessionFactory.getCurrentSession().createQuery(hql));
+	
+	       // String hql = "from users where user =? and pass1=?";
+	        String hql = "from users where user =?";
 	        session = sessionFactory.openSession();
 	        Transaction tx= session.beginTransaction();
 	       try{ 
 	        Query query = session.createQuery(hql);
 	        query.setParameter(0, user);
-	        query.setParameter(1, password);
+	        //query.setParameter(1, password);
 	       u= (User) query.uniqueResult();
 	        //List userList = query.list();
 	        

@@ -1,19 +1,15 @@
 package project.derivatives.controller;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import project.derivatives.busObj.UserBo;
 import project.derivatives.model.User;
 
@@ -43,13 +39,15 @@ public class HomeController {
 		u.setRdoGender(gen);
 		u.setEmail(em);
 		u.setMobile(mob);
-		try{
+		//u.setPass1(pas);
+		u.setPass1(BCrypt.hashpw(pas, BCrypt.gensalt())); 
+		/*try{
 		MessageDigest password = MessageDigest.getInstance("MD5");
 		password.update(pas.getBytes(), 0, pas.length());
-		u.setPass1(password.digest().toString());
+		u.setPass1(new BigInteger(1,password.digest()).toString());
 		}catch(Exception ex){
 			ex.printStackTrace();
-		}
+		}*/
 		userBo.create(u);
 		return new ModelAndView("login");
 	}
@@ -69,25 +67,29 @@ public class HomeController {
 	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 			public ModelAndView testdash(@RequestParam("userID") String uid, @RequestParam("pwd") String pwd) throws IOException{
 				
-				MessageDigest password;
+				/*MessageDigest password;
 				String pas1 = null;
 				try {
 					password = MessageDigest.getInstance("MD5");
 					password.update(pwd.getBytes(), 0, pwd.length());
-					pas1=password.digest().toString();
+					pas1=new BigInteger(1,password.digest()).toString(16);
 				} catch (NoSuchAlgorithmException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 				
 				ModelAndView model = null;
-					if (userBo.findUser(uid, pwd)==null){
-								model = new ModelAndView("login");
-								model.addObject("Invalid", "Invalid Login Credentials");
+					if (userBo.findUser(uid, pwd)!=null){
+								if(BCrypt.checkpw(pwd,userBo.findUser(uid, pwd).getPass1() )){
+								model = new ModelAndView("dashboard");
+								model.addObject("usedBy",uid);
+								}
+								else{model = new ModelAndView("login");
+								model.addObject("Invalid", "Wrong Password"); }
 							}
 					else{
-						model = new ModelAndView("dashboard");
-						model.addObject("usedBy",uid);
+						model = new ModelAndView("login");
+						model.addObject("Invalid", "Username does not exist");
 					}
 						
 						return model;

@@ -58,7 +58,7 @@ public class FuturesCalculator extends Calculator {
 			futureP=(this.getSpotPrice()-this.getIncome())*(Math.exp(this.getIr()*this.getDaysToExp()));
 		}
 		else if(this.isYeild){
-			futureP=this.getSpotPrice()*(Math.exp(this.getIr()-this.getYield())*this.getDaysToExp());
+			futureP=this.getSpotPrice()*(Math.exp((this.getIr()-this.getYield())*this.getDaysToExp()));
 		}
 		
 		return futureP;

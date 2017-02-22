@@ -39,15 +39,7 @@ public class HomeController {
 		u.setRdoGender(gen);
 		u.setEmail(em);
 		u.setMobile(mob);
-		//u.setPass1(pas);
 		u.setPass1(BCrypt.hashpw(pas, BCrypt.gensalt())); 
-		/*try{
-		MessageDigest password = MessageDigest.getInstance("MD5");
-		password.update(pas.getBytes(), 0, pas.length());
-		u.setPass1(new BigInteger(1,password.digest()).toString());
-		}catch(Exception ex){
-			ex.printStackTrace();
-		}*/
 		userBo.create(u);
 		return new ModelAndView("login");
 	}
@@ -67,33 +59,36 @@ public class HomeController {
 	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 			public ModelAndView testdash(@RequestParam("userID") String uid, @RequestParam("pwd") String pwd) throws IOException{
 				
-				/*MessageDigest password;
-				String pas1 = null;
-				try {
-					password = MessageDigest.getInstance("MD5");
-					password.update(pwd.getBytes(), 0, pwd.length());
-					pas1=new BigInteger(1,password.digest()).toString(16);
-				} catch (NoSuchAlgorithmException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
 				
 				ModelAndView model = null;
+				if(uid.length()!=0 ||pwd.length()!=0){
 					if (userBo.findUser(uid, pwd)!=null){
-								if(BCrypt.checkpw(pwd,userBo.findUser(uid, pwd).getPass1() )){
-								model = new ModelAndView("dashboard");
-								model.addObject("usedBy",uid);
+								User us =userBo.findUser(uid, pwd);
+								if(BCrypt.checkpw(pwd,us.getPass1() )){
+										model = new ModelAndView("dashboard");
+										model.addObject("firstname",us.getFname());
+										model.addObject("lastname",us.getLname());
+										model.addObject("email",us.getEmail());
+										model.addObject("mobile",us.getMobile());
+										model.addObject("gender",us.getRdoGender());
+										model.addObject("username",us.getUser());
 								}
 								else{model = new ModelAndView("login");
-								model.addObject("Invalid", "Wrong Password"); }
-							}
+										model.addObject("Invalid", "Wrong Password"); 
+									}
+					}
 					else{
 						model = new ModelAndView("login");
 						model.addObject("Invalid", "Username does not exist");
-					}
-						
-						return model;
+						}
 				}
+				else{
+					model = new ModelAndView("login");
+					model.addObject("Invalid", "Fields cannot be empty");
+				}
+						return model;
+				
+	}
 	
 	
 	@RequestMapping(value="/pricederivative")

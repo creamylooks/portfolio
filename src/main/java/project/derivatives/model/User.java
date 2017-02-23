@@ -9,6 +9,7 @@ import javax.persistence.Id;
 
 
 @Entity(name="users")
+
 public class User {
 	@Id
 	@GeneratedValue

@@ -2,36 +2,56 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="<c:url value="/resources/fonts/font-awesome.min.css"/>" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/bootstrap.min.js"></script>
+<link href="<c:url value="/resources/bootstrap.min.css"/>" rel="stylesheet"/>
+ 
+ <link href="<c:url value="/resources/style.css"/>" rel="stylesheet"/>
 <title>Login</title>
 
 
 </head>
 <body>
-
-
-		<br /><br /><br /><br />
+		<div class="container">
+		<div class="collection">
+			<h2 align ="center">Login</h2>
 		<form name = "login" action="dashboard" method = "post">
-		
-		&nbsp;&nbsp;<h2 align ="center"> &nbsp;&nbsp;Login</h2>
-		<table align ="center">
-			<tr>
-		 		<td align ="right">Username:</td> <td><input type="text" name ="userID" /></td>
-			</tr>
-			<tr>
-				<td align = "right">Password: </td><td><input type="password" name =  "pwd"/></td>
-			</tr>
-			<tr>
-				<td colspan="2" align ="right"><button type="button" onclick="location.href='register'">Sign up</button>
-				<button type="submit">Login</button></td>
-
-			</tr>
-			</table>
+		<div class="form-group">
+    <label for="userName">Username:</label>
+    <div class="input-group">
+     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+    <input type="text" class="form-control" name ="userID" />
+    </div>
+    </div>
+		<div class="form-group" >
+		<label for="userPassword">Password:</label>
+		<div class="input-group ">
+    	 	<span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+				 <input type="password" class="form-control" name =  "pwd"></input>
+				 
+				 </div>
+			</div>
+				<button type="submit" class="btn btn-primary btn-block">Sign in</button><br/>
+				<p align ="center" class="text-danger">${Invalid}</p><br/>
+				
+				<div id="collect">
+				<label for="needAccount">Need an Account?</label>
+				<button type="button" class="btn btn-primary btn-sm" onclick="location.href='register'">Register</button><br/>
+				<a href="#">Forgot your password?</a>
+				</div>
+				
+				
+				
 		</form>
-		<p align ="center">${Invalid}</p>
 		
+		
+		</div>
+		</div>
 </body>
 </html>

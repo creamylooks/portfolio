@@ -13,11 +13,11 @@
 		<div>
 			<img src="#" alt="profile picture"/>
 			<ul>
-				<li><a href ="/dashboard">Profile</a></li>
-				<li><a href ="/portfoliolist">Portfolio</a></li>
-				<li><a href ="/pricederivative">Add Derivative</a></li>
-				<li><a href ="/visualize">Visualize</a></li>
-				<li><a href ="/portsummary">Porfolio Summary</a></li>
+				<li><a href ="derivatives/dashboard">Profile</a></li>
+				<li><a href ="derivatives/portfoliolist">Portfolio</a></li>
+				<li><a href ="derivatives/pricederivative">Add Derivative</a></li>
+				<li><a href ="derivatives/visualize">Visualize</a></li>
+				<li><a href ="derivatives/portsummary">Porfolio Summary</a></li>
 			</ul>
 		</div>
 		<div>
@@ -40,7 +40,7 @@
 				<div><h4>${gender}</h4></div>
 			</div>
 		</div>
-		<button>Edit</button>
+		<button onclick= "location.href='dashboard/edit'">Edit</button>
 
 
 

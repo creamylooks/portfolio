@@ -56,6 +56,7 @@ public class HomeController {
 	}
 	
 	
+	
 	@RequestMapping(value="/dashboard", method = RequestMethod.POST)
 			public ModelAndView testdash(@RequestParam("userID") String uid, @RequestParam("pwd") String pwd) throws IOException{
 				
@@ -91,25 +92,44 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value="/pricederivative")
+	@RequestMapping(value="/derivatives/pricederivative")
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("pricederivative");
 	}
+	@RequestMapping(value="/derivatives/dashboard")
+	public ModelAndView test4b(HttpServletResponse response) throws IOException{
+		return new ModelAndView("dashboard");
+	}
+	@RequestMapping(value="/derivatives/portfoliolist")
+	public ModelAndView test4c(HttpServletResponse response) throws IOException{
+		return new ModelAndView("portfoliolist");
+	}
 	
 	
-	@RequestMapping(value="/portsummary")
+	@RequestMapping(value="/derivatives/portsummary")
 	public ModelAndView test5(HttpServletResponse response) throws IOException{
 		return new ModelAndView("portsummary");
 	}
 	
 	
-	@RequestMapping(value="/visualize")
+	@RequestMapping(value="/derivatives/visualize")
 	public ModelAndView test6(HttpServletResponse response) throws IOException{
 		return new ModelAndView("visualize");
 	}
-	@RequestMapping(value="/pricesummary")
+	@RequestMapping(value="/derivatives/pricesummary")
 	public ModelAndView test7(HttpServletResponse response) throws IOException{
 		return new ModelAndView("pricesummary");
 	}
+	
+	@RequestMapping(value="/dashboard/edit")
+	public ModelAndView test9(HttpServletResponse response) throws IOException{
+		return new ModelAndView("dashboardedit");
+	}
+	@RequestMapping(value="dashboard/derivatives/dashboard")
+	public ModelAndView test10(HttpServletResponse response) throws IOException{
+		return new ModelAndView("dashboard");
+	}
+	
+	
 
 }

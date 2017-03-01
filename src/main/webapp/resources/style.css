@@ -2,16 +2,49 @@
 body{
 	
 margin: 0 auto;
+width: 600px;
+height: 800px;
 
 }
-.container{
-	width: 400px;
-	height: 300px;
+#contain{
+	width: 480px;
+	height:500px;
 	border-radius: 8px;
 	margin: 0, auto;
-	margin-top: 150px; 
+	margin-top: 100px; 
+	box-shadow: 2px 2px 2px 2px;
 }
 #collect{
 	text-align: center;
 	margin=:0,auto;
+}
+.collection{
+	border-style: solid;
+	border-color:white;
+	height:500;
+	width: 500;
+	
+}
+
+#name{
+	z-index: 1;
+	margin-top:20px;
+	color:#337ab7;
+	text-align: center;
+	font-size: 20px;
+}
+
+h2{
+	font-family: 'Sansita', sans-serif;
+	font-family: 'Play', sans-serif;
+	font-family: 'Dancing Script', cursive;
+	font-family: 'Merriweather', serif;
+	font-size: 30px;	
+}
+#profpic{
+	height:280px;
+	border-radius: 13px;
+	width: 360px;
+	margin:0;
+	
 }

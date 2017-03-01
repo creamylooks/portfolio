@@ -5,11 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Add Derivative</title>
-
-
-<script  type="text/javascript" >
-	function fun(){
+<script>
+/**
+ * 
+ */
+function fun(){
 		document.getElementById("futuresDetails").style.display="none";
 		document.getElementById("optionsDetails").style.display="none";
 	}
@@ -98,7 +98,8 @@ function selectFunc(){
 
 
 </script>
-</head>
+<title>Add Derivative</title>
+</head >
 <body onload="fun();" >
 	
 	

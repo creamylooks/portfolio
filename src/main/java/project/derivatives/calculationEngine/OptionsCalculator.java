@@ -52,6 +52,9 @@ public class OptionsCalculator extends Calculator {
 	@Override
 	public  ArrayList<Double> calcOptions(){
 		ArrayList<Double> greeks = new ArrayList<Double>();
+		if(this.getVolatility()>1){
+			this.setVolatility(this.getVolatility()/100);
+		}
 		if(this.getModel().equals(PricingModel.Black_Scholes)){
 			BlackScholes black = new BlackScholes();
 			if(!this.isDividend){

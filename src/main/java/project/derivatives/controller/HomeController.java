@@ -116,10 +116,10 @@ public class HomeController {
 	public ModelAndView test6(HttpServletResponse response) throws IOException{
 		return new ModelAndView("visualize");
 	}
-	@RequestMapping(value="/derivatives/pricesummary")
+	/*@RequestMapping(value="/derivatives/pricesummary")
 	public ModelAndView test7(HttpServletResponse response) throws IOException{
 		return new ModelAndView("pricesummary");
-	}
+	}*/
 	
 	@RequestMapping(value="/dashboard/edit")
 	public ModelAndView test9(HttpServletResponse response) throws IOException{

@@ -34,12 +34,16 @@ height: 800px;
 	font-size: 20px;
 }
 
-h2{
+h2,#price{
 	font-family: 'Sansita', sans-serif;
 	font-family: 'Play', sans-serif;
 	font-family: 'Dancing Script', cursive;
 	font-family: 'Merriweather', serif;
 	font-size: 30px;	
+}
+td{
+	font-family: 'Merriweather', serif;
+	font-size: 20px;
 }
 #profpic{
 	height:280px;

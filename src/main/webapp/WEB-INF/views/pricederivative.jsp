@@ -103,7 +103,7 @@ function selectFunc(){
 <body onload="fun();" >
 	
 	
-	<form>
+	<form action="pricesummary" method="post">
 		
 				Contract Type:
 				<select name="contractType" id="contType" onchange="contractSelect();">
@@ -151,8 +151,8 @@ function selectFunc(){
 					<div>Pricing Model:
 						<select name="priceModel">
 							<option value = "none">Please Select a Type</option>
-							<option value="black">Black-Scholes</option>
-							<option value = "binomial">Binomial</option>
+							<option value="Black_Scholes">Black-Scholes</option>
+							<option value = "Binomial">Binomial</option>
 						</select>
 					</div>
 					<div id="optType">
@@ -166,7 +166,7 @@ function selectFunc(){
 					<div > Stock Price: <input type="text" name = "stockPrice" /></div>
 					 <div >Strike Price <input type="text" name = "strikePrice"/></div>
 					 <div>Volatility Type: 
-					 <select id="volatilityType" onchange = "selectFunc();">
+					 <select id="volatilityType" name= "vol" onchange = "selectFunc();">
 					 <option value = "none">Please Select a Type</option>
 						<option value="manual">Manual Entry</option>
 						<option value="historical">Historical</option>

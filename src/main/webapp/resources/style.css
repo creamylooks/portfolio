@@ -1,11 +1,21 @@
-
-body{
-	
+/*url(http://photodoto.com/wp-content/uploads/2013/04/3-minimalist-photography-tips.jpg);*/
+#html{
+	background:#fff url(http://maxpixel.freegreatpicture.com/static/photo/1x/Office-Mac-Coffee-Apple-Creative-Home-Office-581131.jpg)
+}
+#body{
+/* background: #2d2c41; */
 margin: 0 auto;
-width: 600px;
-height: 800px;
+width:490px;
+height: 500px;
+margin-top: 70px;
+border-radius: 8px;
 
 }
+#forming{
+	margin=0 auto;
+	
+}
+
 #contain{
 	width: 480px;
 	height:500px;
@@ -19,8 +29,8 @@ height: 800px;
 	margin=:0,auto;
 }
 .collection{
-	border-style: solid;
-	border-color:white;
+	/* border-style: solid;
+	border-color:white; */
 	height:500;
 	width: 500;
 	
@@ -46,9 +56,10 @@ td{
 	font-size: 20px;
 }
 #profpic{
-	height:280px;
-	border-radius: 13px;
-	width: 360px;
+	height:120px;
+	border-radius: 9px;
+	width: 120px;
 	margin:0;
 	
-}
+	
+} */

@@ -6,19 +6,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="<c:url value="/resources/fonts/font-awesome.min.css"/>" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/bootstrap.min.js"></script>
+<script src="<c:url value="https://code.jquery.com/jquery-1.12.0.min.js"/>"></script>
+<link href="<c:url value="/resources/bootstrap.min.css"/>" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Play|Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Merriweather|Play|Sansita" rel="stylesheet"/>
+ <link href="<c:url value="/resources/style.css"/>" rel="stylesheet"/>
+ 
 <title>Dashboard</title>
 </head>
 <body>
-		<div><img src="#" alt="banner"/></div>
-		<div>
-			<img src="#" alt="profile picture"/>
-			<ul>
-				<li><a href ="derivatives/dashboard">Profile</a></li>
-				<li><a href ="derivatives/portfoliolist">Portfolio</a></li>
-				<li><a href ="derivatives/pricederivative">Add Derivative</a></li>
-				<li><a href ="derivatives/visualize">Visualize</a></li>
-				<li><a href ="derivatives/portsummary">Porfolio Summary</a></li>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3">
+			<img src="http://computerarts.dk/wp-content/uploads/2014/04/background1.jpg" width="300" height="300" alt="profile picture"/>
+			<div class="navbar">
+			<ul class="nav nav-pills nav-stacked">
+				<li ><a href ="#">Profile</a></li>
+				<li><a href ="portfoliolist">Portfolio</a></li>
+				<li><a href ="pricederivative">Add Derivative</a></li>
+				<li><a href ="visualize">Visualize</a></li>
+				<li><a href ="portsummary">Porfolio Summary</a></li>
 			</ul>
+			</div>
 		</div>
 		<div>
 			<div>Username
@@ -42,8 +57,8 @@
 		</div>
 		<button onclick= "location.href='dashboard/edit'">Edit</button>
 
+</div>
 
-
-
+</div>
 </body>
 </html>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 //import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import project.derivatives.calculationEngine.Calculator;
@@ -23,10 +24,11 @@ import project.derivatives.calculationEngine.OptionsCalculator;
 import project.derivatives.calculationEngine.PricingModel;
 
 @Controller
+@SessionAttributes("username") //not yet sure if this will work
 public class PricingController {
 		
 	
-	@RequestMapping(value="/derivatives/pricesummary")
+	@RequestMapping(value="/pricesummary")
 	public ModelAndView test7(HttpServletRequest request, HttpServletResponse response) throws IOException{
 	/*	if(request.getParameter("contractType").equals(ContractType.Options)){
 			if(request.getParameter("priceData")!=null){

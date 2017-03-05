@@ -50,7 +50,7 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	        properties.put("hibernate.show_sql", "true");
 	        properties.put("hibernate.dialect",
 	                "org.hibernate.dialect.MySQLDialect");
-	        properties.put("hibernate.hbm2ddl.auto", "update");
+	        properties.put("hibernate.hbm2ddl.auto", "create");
 	        return properties;
 	    }
 
@@ -59,7 +59,12 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	        LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(
 	                dataSource);
 	        sessionBuilder.addProperties(getHibernateProperties());
-	        sessionBuilder.addAnnotatedClasses(project.derivatives.model.User.class);
+	        /*sessionBuilder.addAnnotatedClasses(project.derivatives.model.User.class);
+	        sessionBuilder.addAnnotatedClass(project.derivatives.model.Asset.class);
+	        sessionBuilder.addAnnotatedClass(project.derivatives.model.Future.class);
+	        sessionBuilder.addAnnotatedClass(project.derivatives.model.Options.class);*/
+	        sessionBuilder.scanPackages("project.derivatives.model");
+	       
 	        return sessionBuilder.buildSessionFactory();
 	    }
 	    @Bean(name="transactionManger")

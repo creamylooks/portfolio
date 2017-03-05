@@ -3,20 +3,25 @@ package project.derivatives.controller;
 import java.io.IOException;
 import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import project.derivatives.busObj.UserBo;
 import project.derivatives.model.User;
 
 @Controller
+@SessionAttributes("username")
 public class HomeController {
 	@Autowired
 	UserBo userBo;
+	//HttpSession sess;
 	
 	@RequestMapping(value="/derivatives/register", method = RequestMethod.GET)
 	public ModelAndView test_reg(){
@@ -24,7 +29,7 @@ public class HomeController {
 	}
 
 	
-	@RequestMapping(value="/derivatives/login", method = RequestMethod.POST)
+	@RequestMapping(value="login", method = RequestMethod.POST)
 	public ModelAndView test(Map<String, Object> map,@RequestParam("fname") String fn,
 							 @RequestParam("lname") String ln,
 							 @RequestParam("user") String un,
@@ -51,7 +56,7 @@ public class HomeController {
 	
 	@RequestMapping(value="/register")
 	public ModelAndView test2(HttpServletResponse response, Map<String, Object> mapel) throws IOException{
-		mapel.put("use", new User());
+		
 		return new ModelAndView("register");
 	}
 	
@@ -73,6 +78,7 @@ public class HomeController {
 										model.addObject("mobile",us.getMobile());
 										model.addObject("gender",us.getRdoGender());
 										model.addObject("username",us.getUser());
+									//	sess.setAttribute(us.getUser(),"username");
 								}
 								else{model = new ModelAndView("login");
 										model.addObject("Invalid", "Wrong Password"); 
@@ -92,27 +98,27 @@ public class HomeController {
 	}
 	
 	
-	@RequestMapping(value="/derivatives/pricederivative")
+	@RequestMapping(value="/pricederivative")
 	public ModelAndView test4(HttpServletResponse response) throws IOException{
 		return new ModelAndView("pricederivative");
 	}
-	@RequestMapping(value="/derivatives/dashboard")
+	@RequestMapping(value="/dashboard")
 	public ModelAndView test4b(HttpServletResponse response) throws IOException{
 		return new ModelAndView("dashboard");
 	}
-	@RequestMapping(value="/derivatives/portfoliolist")
+	@RequestMapping(value="/portfoliolist")
 	public ModelAndView test4c(HttpServletResponse response) throws IOException{
 		return new ModelAndView("portfoliolist");
 	}
 	
 	
-	@RequestMapping(value="/derivatives/portsummary")
+	@RequestMapping(value="/portsummary")
 	public ModelAndView test5(HttpServletResponse response) throws IOException{
 		return new ModelAndView("portsummary");
 	}
 	
 	
-	@RequestMapping(value="/derivatives/visualize")
+	@RequestMapping(value="/visualize")
 	public ModelAndView test6(HttpServletResponse response) throws IOException{
 		return new ModelAndView("visualize");
 	}
@@ -121,10 +127,7 @@ public class HomeController {
 		return new ModelAndView("pricesummary");
 	}*/
 	
-	@RequestMapping(value="/dashboard/edit")
-	public ModelAndView test9(HttpServletResponse response) throws IOException{
-		return new ModelAndView("dashboardedit");
-	}
+	
 	@RequestMapping(value="dashboard/derivatives/dashboard")
 	public ModelAndView test10(HttpServletResponse response) throws IOException{
 		return new ModelAndView("dashboard");

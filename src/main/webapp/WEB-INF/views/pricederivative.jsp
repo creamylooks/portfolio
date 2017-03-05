@@ -5,7 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<script>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="/resources/fonts/font-awesome.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/bootstrap.min.js"></script>
+<link href="/resources/bootstrap.min.css"/>
+ <link href="https://fonts.googleapis.com/css?family=Sansita" />
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Sansita"/>
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Play|Sansita" />
+ <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Merriweather|Play|Sansita" />
+ <link href="/resources/style.css"/>
+ <script>
 /**
  * 
  */
@@ -94,77 +104,121 @@ function selectFunc(){
 		}
 		
 	}
+	
 
 
 
 </script>
+<style>
+		.form-group{
+			margin: 10px;
+			 
+		}
+		.form-horizontal{
+			margin-top:150px;
+		}
+		
+</style>
 <title>Add Derivative</title>
 </head >
 <body onload="fun();" >
 	
-	
-	<form action="pricesummary" method="post">
-		
+	<div class="container-fluid">
+	<div align="center" id="forming">
+	<form action="pricesummary" method="post" class="form-horizontal" >
+				<div class="form-group">
 				Contract Type:
 				<select name="contractType" id="contType" onchange="contractSelect();">
 					<option value = "none">Please Select a Type</option>
 					<option value = "Futures">Future</option>
 					<option value = "Options">Option</option>
 				</select>
+				</div>
+				<div class="form-group">
 				Interest Rate:<input type="text" name = "rate"/>
-				Days To Expiration <input type="text" name="daysToExp"/>
-				<div> Day Count Convention :
+				</div>
+				<div class="form-group">
+				Days To Expiration: <input type="text" name="daysToExp"/>
+				</div>
+				
+				<div>
+				<div class="form-group"> 
+				Day Count Convention :
 							   <select name="dayConv" id="dayCountConv">
 									  <option value="none">Please select</option>
 									  <option value="Trading">Trading Days</option>
 									  <option value="Calendar">Calendar Days</option>
 							   </select>
+							   </div>
 				</div>
 				  <div id = "total">
 					  <div id="futuresDetails">
+					  <div class="form-group">
 						  <div >Spot Price: <input type="text" name = "spotPrice"/></div>
-						  <div >Known Income?:
+						  </div>
+						  <div class="form-group">
+						  <div >
+						  Known Income?:
 							   <select name="incomeDetail" id="income" onchange="fun2();">
 									  <option value="none">Please select</option>
 									  <option value="no">No</option>
 									  <option value="yes">Yes</option>
 							   </select>
 						  </div>
-						  
+						  </div>
+						  <div class="form-group">
 						  <div id="isIncome">
 						  	Income: <input type="text" name="inc"/>
-						  	Days to payment<input type="text" name="daysToIncPay"/>
-						  	Interest rate for Income <input type="text" name="intRateInc"/>
+						  	</div>
+						  	<div class="form-group">
+						  	Days to payment:<input type="text" name="daysToIncPay"/>
+						  	</div>
+						  	<div class="form-group">
+						  	Interest rate for Income:<input type="text" name="intRateInc"/>
+						  	</div>
 						  </div>
+						  <div class="form-group">
 						  <div > Known Yield? :
 							   <select name="yieldDetail" id="yield" onchange="fun3();">
 									  <option value="none">Please select</option>
 									  <option value="no">No</option>
 									  <option value="yes">Yes</option>
 							   </select>
+							   </div>
 						  </div>
+						  <div class="form-group">
 						  <div id="isYield">
-						  	Yield <input type="text" name="yld" />
+						  	Yield: <input type="text" name="yld" />
+						  	</div>
 						  </div>
 					 </div>
+					 
 					<div id="optionsDetails">
+					<div class="form-group">
 					<div>Pricing Model:
 						<select name="priceModel">
 							<option value = "none">Please Select a Type</option>
 							<option value="Black_Scholes">Black-Scholes</option>
 							<option value = "Binomial">Binomial</option>
 						</select>
+						</div>
 					</div>
 					<div id="optType">
+					<div class="form-group">
 		   Option Type:	<select name="optionType">
 							<option value = "none">Please Select a Type</option>
 							<option value="call">CALL</option>
 							<option value = "put">PUT</option>
 						</select>
+						</div>
 					</div>
-					
+					<div class="form-group">
 					<div > Stock Price: <input type="text" name = "stockPrice" /></div>
+					</div>
+					<div class="form-group">
 					 <div >Strike Price <input type="text" name = "strikePrice"/></div>
+					 </div>
+					 <div class="form-group">
 					 <div>Volatility Type: 
 					 <select id="volatilityType" name= "vol" onchange = "selectFunc();">
 					 <option value = "none">Please Select a Type</option>
@@ -173,19 +227,27 @@ function selectFunc(){
 						<option value="implied">Implied</option>
 					</select>
 					</div>
+					</div>
 					<div id="vols">
+					<div class="form-group">
 							<div id= "manualVolatility">
 							Value for Volatility<input type="text" name = "manualVol"/>
 							</div>
-							<div id="historicalVolatility">
-							Upload price data<input type="file" name = "priceData"/>
 							</div>
+							<div id="historicalVolatility">
+							<div class="form-group">
+							Upload price data:<input type="file" name = "priceData"/>
+							</div>
+							</div>
+							<div class="form-group">
 							<div id="impliedVolatility">
-							Market Price<input type="text" name = "marketPrice"/>
+							Market Price:<input type="text" name = "marketPrice"/>
+							</div>
 							</div>
 					</div>
 					
 					<div>
+					<div class="form-group">
 					 Dividend Yielding?:
 					 <select id="divi" onchange = "dividendSelect();">
 					 	<option value = "none">Please Select a Type</option>
@@ -193,9 +255,16 @@ function selectFunc(){
 						<option value = "yes" onclick="">Yes</option>
 					</select> 
 					</div>
+					</div>
+					
 					<div id="dividendDetails">
+					<div class="form-group">
 					Dividend Amount: <input type="text" name = "dividendAmount"/>
+					</div>
+					<div class="form-group">
 					Days to Ex-Dividend: <input type="text" name = "daysToExDiv"/>
+					</div>
+					<div class="form-group">
 					Dividend Frequency:
 					<select name="dividendFreq" id="divideFreq">
 						<option value = "none">Please Select a Type</option>
@@ -203,12 +272,16 @@ function selectFunc(){
 						<option value = "quarter">Quarterly</option>
 						<option value="semiAnnual">Semi-Annually</option>
 						<option value = "annual">Annually</option>	
-					</select> 
+					</select>
+					</div> 
 					</div>
 					</div>
 				</div>
 				<button>Calculate</button>
 	</form>
+	</div>
+	</div>
+	
 	
 </body>
 </html>

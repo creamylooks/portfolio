@@ -66,9 +66,10 @@ public final class BlackScholes {
 		probd2=p.ncDisfnc(d2);
 		double densityfunc=p.npdfDisfnc(d1);
 		double densityfunc2=p.npdfDisfnc(d2);
-		setcalle(((sprice*Math.exp((brate-rate)*time))
-		*probd1)-((strike*Math.exp(-rate
-		*time))*probd2));
+		//setcalle(((sprice*Math.exp((brate-rate)*time))
+		//*probd1)-((strike*Math.exp(-rate
+		//*time))*probd2));
+		setcalle(sprice*probd1-strike*Math.exp(-rate*time)*probd2);
 		setpute(((strike*Math.exp(-rate*time))
 		*p.ncDisfnc(-d2))-(sprice*Math.exp((brate-rate)
 		*time))*p.ncDisfnc(-d1));

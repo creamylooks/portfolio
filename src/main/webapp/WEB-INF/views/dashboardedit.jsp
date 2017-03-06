@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -5,22 +6,55 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<title>Edit Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="<c:url value="/resources/fonts/font-awesome.min.css"/>" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/bootstrap.min.js"></script>
+<link href="<c:url value="/resources/bootstrap.min.css"/>" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Merriweather|Play|Sansita" rel="stylesheet"/>
+ <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Merriweather|Play|Sansita" rel="stylesheet"/>
+ <link href="<c:url value="/resources/style.css"/>" rel="stylesheet"/>
+<title>Dashboard</title>
 </head>
 <body>
-		<form name = "registration" action="" method = "post">
-					Firstname: <input type="text" name="fname"/>
-					Lastname:<input type="text" name="lname"/>
-					Username:<input type="text" name ="user"/>
-				
-					<label for = "Male"><input type="radio" name="rdoGender" id="Male" value="Male"/>Male</label>
-					<label for = "Female"><input type="radio" name="rdoGender" id="Female" value = "Female"></input>Female</label>
-				Email: <input type="text" name="email"/>
-				
-				Mobile: <input type="text" name="mobile"/>
-				
-					<button type="button" onclick="location.href='derivatives/dashboard'">Cancel</button><button type="submit">Save</button>
-				
-	</form>
+<div class="container">
+	<div class="row">
+		<div>
+			<img src="#" alt="profile picture"/>
+			<ul>
+				<li><a href ="derivatives/dashboard">Profile</a></li>
+				<li><a href ="derivatives/portfoliolist">Portfolio</a></li>
+				<li><a href ="derivatives/pricederivative">Add Derivative</a></li>
+				<li><a href ="derivatives/visualize">Visualize</a></li>
+				<li><a href ="derivatives/portsummary">Porfolio Summary</a></li>
+			</ul>
+		</div>
+		<div>
+			<div>Username
+				<div><h4>${username}</h4></div>
+			</div>
+			<div>Firstname
+				<div><h4>${firstname}</h4></div>
+			</div>
+			<div>Lastname
+				<div><h4>${lastname}</h4></div>
+			</div>
+			<div>Email
+				<div><h4>${email}</h4></div>
+			</div>
+			<div>Mobile
+				<div><h4>${mobile}</h4></div>
+			</div>
+			<div>Gender
+				<div><h4>${gender}</h4></div>
+			</div>
+		</div>
+		<button onclick= "location.href='dashboard/edit'">Edit</button>
+
+</div>
+
+</div>
 </body>
 </html>

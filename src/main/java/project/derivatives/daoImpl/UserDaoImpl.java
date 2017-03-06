@@ -145,8 +145,13 @@ public class UserDaoImpl  implements UserDao{
 
 	@Override
 	public List<User> getAll() {
-		
-		return session.createCriteria(User.class).list();
+			session=sessionFactory.openSession();
+			session.beginTransaction();
+			@SuppressWarnings("unchecked")
+			List<User> us= session.createCriteria(User.class).list();
+			session.getTransaction().commit();
+			session.close();
+		return us;
 	}
 
 }

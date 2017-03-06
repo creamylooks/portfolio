@@ -8,8 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="<c:url value="/resources/fonts/font-awesome.min.css"/>" rel="stylesheet"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/resources/bootstrap.min.js"></script>
 <link href="<c:url value="/resources/bootstrap.min.css"/>" rel="stylesheet"/>
  <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
  <link href="https://fonts.googleapis.com/css?family=Merriweather|Sansita" rel="stylesheet"/>
@@ -57,5 +55,11 @@
 		
 		</div>
 		</div>
+		
+		
+		
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="/resources/bootstrap.min.js"></script>
 </body>
 </html>

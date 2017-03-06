@@ -22,7 +22,8 @@ public class Options {
 	@Id
 	@GeneratedValue
 	private long Contract_No;
-	@Column(nullable=false)
+	
+	
 	private String Option_Type;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
@@ -55,12 +56,7 @@ public class Options {
 		this.asset = asset;
 	}
 
-	public String getOption_Type() {
-		return Option_Type;
-	}
-	public void setOption_Type(String option_Type) {
-		Option_Type = option_Type;
-	}
+	
 	public Date getExpiry_date() {
 		return Expiry_date;
 	}
@@ -96,6 +92,12 @@ public class Options {
 	}
 	public void setContract_No(long contract_No) {
 		Contract_No = contract_No;
+	}
+	public String getOption_Type() {
+		return Option_Type;
+	}
+	public void setOption_Type(String option_Type) {
+		Option_Type = option_Type;
 	}
 	
 	

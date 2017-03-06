@@ -27,6 +27,8 @@ public class Asset {
 	private double Current_Price;
 	@Temporal(TemporalType.DATE)
 	private Date Last_CurPrice_Update;
+	@Column(unique=true, nullable=false)
+	private String Symbol;
 	
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="asset")
@@ -73,6 +75,12 @@ public class Asset {
 	}
 	public void setCurrent_Price(double current_Price) {
 		Current_Price = current_Price;
+	}
+	public String getSymbol() {
+		return Symbol;
+	}
+	public void setSymbol(String symbol) {
+		Symbol = symbol;
 	}
 	
 }

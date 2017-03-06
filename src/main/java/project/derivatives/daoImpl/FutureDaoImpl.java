@@ -7,11 +7,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import project.derivatives.dao.FutureDao;
 import project.derivatives.model.Future;
 
 @Repository("futureDao")
+@Transactional(propagation=Propagation.SUPPORTS, rollbackFor = Exception.class)
 public class FutureDaoImpl implements FutureDao {
 	
 	@Autowired

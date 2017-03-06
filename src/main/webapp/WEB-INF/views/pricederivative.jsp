@@ -7,108 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="/resources/fonts/font-awesome.min.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="/resources/bootstrap.min.js"></script>
+
 <link href="/resources/bootstrap.min.css"/>
  <link href="https://fonts.googleapis.com/css?family=Sansita" />
  <link href="https://fonts.googleapis.com/css?family=Merriweather|Sansita"/>
  <link href="https://fonts.googleapis.com/css?family=Merriweather|Play|Sansita" />
  <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Merriweather|Play|Sansita" />
  <link href="/resources/style.css"/>
- <script>
-/**
- * 
- */
-function fun(){
-		document.getElementById("futuresDetails").style.display="none";
-		document.getElementById("optionsDetails").style.display="none";
-	}
-	
-	function dividendSelect(){
-		var ans= document.getElementById("divi").selectedIndex;
-		if(ans==0 ||ans==1){
-			document.getElementById("dividendDetails").style.display="none";
-		}
-		if(ans==2){
-			document.getElementById("dividendDetails").style.display="block";
-		}
-	}
-	function fun2(){
-		var v = document.getElementById("income").selectedIndex;
-		if(v==0||v==1){
-			document.getElementById("isIncome").style.display="none";
-		}
-		else if (v==2){
-			document.getElementById("isIncome").style.display="block";
-		}
-	}
-	function fun3(){
-		var v = document.getElementById("yield").selectedIndex;
-		if(v==0||v==1){
-			document.getElementById("isYield").style.display="none";
-		}
-		else if (v==2){
-			document.getElementById("isYield").style.display="block";
-		}
-	}
-function selectFunc(){
-	
-	
-	var selection = document.getElementById("volatilityType");
-	var chosenValue =selection.options[selection.selectedIndex].value;
-	document.getElementById("vols").style.display="block";
-	switch(chosenValue){
-		case "manual":
-			
-			document.getElementById("manualVolatility").style.display="block";
-			document.getElementById("historicalVolatility").style.display="none";
-			document.getElementById("impliedVolatility").style.display="none";
-			break;
-		case "historical":
-			document.getElementById("manualVolatility").style.display="none";
-			document.getElementById("historicalVolatility").style.display="block";
-			document.getElementById("impliedVolatility").style.display="none";
-		break;
-		case "implied":
-			document.getElementById("manualVolatility").style.display="none";
-			document.getElementById("historicalVolatility").style.display="none";
-			document.getElementById("impliedVolatility").style.display="block";
-		break;
-		case "none":
-			document.getElementById("manualVolatility").style.display="none";
-		document.getElementById("historicalVolatility").style.display="none";
-		document.getElementById("impliedVolatility").style.display="none";
-		break;
-			
-	}
-}
-	function contractSelect(){
-		var reply= document.getElementById("contType").selectedIndex;
-		if(reply==0){
-			fun();
-		}
-		if(reply==1){
-		
-			document.getElementById("optionsDetails").style.display="none";
-			document.getElementById("isIncome").style.display="none";
-			document.getElementById("isYield").style.display="none";
-			document.getElementById("futuresDetails").style.display="block";
-			
-		}
-		if(reply==2){
-			document.getElementById("futuresDetails").style.display="none";
-			document.getElementById("vols").style.display="none";
-			document.getElementById("dividendDetails").style.display="none";
-			document.getElementById("optionsDetails").style.display="block";
-			
-		}
-		
-	}
-	
-
-
-
-</script>
+ 
 <style>
 		.form-group{
 			margin: 10px;
@@ -127,6 +33,8 @@ function selectFunc(){
 	<div align="center" id="forming">
 	<form action="pricesummary" method="post" class="form-horizontal" >
 				<div class="form-group">
+					
+					
 				Contract Type:
 				<select name="contractType" id="contType" onchange="contractSelect();">
 					<option value = "none">Please Select a Type</option>
@@ -195,6 +103,12 @@ function selectFunc(){
 					 
 					<div id="optionsDetails">
 					<div class="form-group">
+					Company Name: <input type="text" name="assetName"/>
+					</div>
+					<div class="form-group">
+					Symbol: <input type="text" name="assetSymbol"/>
+					</div>
+					<div class="form-group">
 					<div>Pricing Model:
 						<select name="priceModel">
 							<option value = "none">Please Select a Type</option>
@@ -205,7 +119,7 @@ function selectFunc(){
 					</div>
 					<div id="optType">
 					<div class="form-group">
-		   Option Type:	<select name="optionType">
+		   			Option Type:	<select name="optionType">
 							<option value = "none">Please Select a Type</option>
 							<option value="call">CALL</option>
 							<option value = "put">PUT</option>
@@ -224,8 +138,10 @@ function selectFunc(){
 					 <option value = "none">Please Select a Type</option>
 						<option value="manual">Manual Entry</option>
 						<option value="historical">Historical</option>
-						<option value="implied">Implied</option>
+						<option value="existing">Select from Records</option>
+						
 					</select>
+								
 					</div>
 					</div>
 					<div id="vols">
@@ -239,11 +155,14 @@ function selectFunc(){
 							Upload price data:<input type="file" name = "priceData"/>
 							</div>
 							</div>
-							<div class="form-group">
-							<div id="impliedVolatility">
-							Market Price:<input type="text" name = "marketPrice"/>
-							</div>
-							</div>
+							<div id="existingVol">
+								<div class="form-group">
+									Select Existing Volatility:
+									<label for = "implied"><input type="radio" name="exist" id="existImplied" value = "implied"/>Implied</label>
+									<label for = "historical"><input type="radio" name="exist" id="existHistory" value = "historical"/>Historical</label>
+								</div>
+							</div>	
+							
 					</div>
 					
 					<div>
@@ -282,6 +201,103 @@ function selectFunc(){
 	</div>
 	</div>
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="/resources/bootstrap.min.js"></script>
+<script>
+
+function fun(){
+		document.getElementById("futuresDetails").style.display="none";
+		document.getElementById("optionsDetails").style.display="none";
+	}
 	
+	function dividendSelect(){
+		var ans= document.getElementById("divi").selectedIndex;
+		if(ans==0 ||ans==1){
+			document.getElementById("dividendDetails").style.display="none";
+		}
+		if(ans==2){
+			document.getElementById("dividendDetails").style.display="block";
+		}
+	}
+	function fun2(){
+		var v = document.getElementById("income").selectedIndex;
+		if(v==0||v==1){
+			document.getElementById("isIncome").style.display="none";
+		}
+		else if (v==2){
+			document.getElementById("isIncome").style.display="block";
+		}
+	}
+	function fun3(){
+		var v = document.getElementById("yield").selectedIndex;
+		if(v==0||v==1){
+			document.getElementById("isYield").style.display="none";
+		}
+		else if (v==2){
+			document.getElementById("isYield").style.display="block";
+		}
+	}
+function selectFunc(){
+	
+	
+	var selection = document.getElementById("volatilityType");
+	var chosenValue =selection.options[selection.selectedIndex].value;
+	document.getElementById("vols").style.display="block";
+	switch(chosenValue){
+		case "manual":
+			
+			document.getElementById("manualVolatility").style.display="block";
+			document.getElementById("historicalVolatility").style.display="none";
+			document.getElementById("existingVol").style.display="none";
+			
+			break;
+		case "historical":
+			document.getElementById("manualVolatility").style.display="none";
+			document.getElementById("historicalVolatility").style.display="block";
+			document.getElementById("existingVol").style.display="none";
+			
+			
+		break;
+		
+		case "existing":
+			document.getElementById("manualVolatility").style.display="none";
+			document.getElementById("historicalVolatility").style.display="none";
+			document.getElementById("existingVol").style.display="block";
+			
+		
+		default:
+			document.getElementById("manualVolatility").style.display="none";
+		document.getElementById("historicalVolatility").style.display="none";
+		document.getElementById("impliedVolatility").style.display="none";
+			
+	}
+}
+	function contractSelect(){
+		var reply= document.getElementById("contType").selectedIndex;
+		if(reply==0){
+			fun();
+		}
+		if(reply==1){
+		
+			document.getElementById("optionsDetails").style.display="none";
+			document.getElementById("isIncome").style.display="none";
+			document.getElementById("isYield").style.display="none";
+			document.getElementById("futuresDetails").style.display="block";
+			
+		}
+		if(reply==2){
+			document.getElementById("futuresDetails").style.display="none";
+			document.getElementById("vols").style.display="none";
+			document.getElementById("dividendDetails").style.display="none";
+			document.getElementById("optionsDetails").style.display="block";
+			
+		}
+		
+	}
+	
+
+
+
+</script>
 </body>
 </html>

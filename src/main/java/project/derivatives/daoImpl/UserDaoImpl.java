@@ -14,6 +14,7 @@ import project.derivatives.dao.UserDao;
 import project.derivatives.model.User;
 
 @Repository("userDao")
+
 public class UserDaoImpl  implements UserDao{
       
 	@Autowired

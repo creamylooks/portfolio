@@ -23,15 +23,33 @@
 <body>
 <div class="container-fluid">
 	<div class="row">
+	<div class="col-md-1 col-md-1-offset-11 ">
+	<button>Logout</button>
+	</div>
+	</div>
+	<div class="row">
 		<div class="col-md-3">
 			<img src="http://computerarts.dk/wp-content/uploads/2014/04/background1.jpg" width="300" height="300" alt="profile picture"/>
+			
+			
+			
+			
 			<div class="navbar">
 			<ul class="nav nav-pills nav-stacked">
 				<li ><a href ="#">Profile</a></li>
-				<li><a href ="portfoliolist">Portfolio</a></li>
-				<li><a href ="pricederivative">Add Derivative</a></li>
-				<li><a href ="visualize">Visualize</a></li>
-				<li><a href ="portsummary">Porfolio Summary</a></li>
+				<li><a href ="portfoliolist">Portfolio</a>
+					<ul>
+						<li><a href="#"> All Assets</a></li>
+						<li><a href="#"> My Futures Contracts</a></li>
+						<li><a href="#"> My Options Contracts</a></li>
+					</ul>
+				</li>
+				<li><a href ="pricederivative">Add Asset</a></li>
+				<li><a href ="#">Implied Volatility</a></li>
+				<li><a href ="visualize">Visualize Data</a></li>
+				<li><a href ="#">Settings</a></li>
+				
+				
 			</ul>
 			</div>
 		</div>

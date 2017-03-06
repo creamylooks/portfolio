@@ -59,4 +59,11 @@ public class AssetBusObjImpl implements AssetBusObj {
 		return assetDao.getAll();
 	}
 
+	@Override
+	public Asset findSymbol(String Asset_symbol) {
+		// TODO Auto-generated method stub
+		return assetDao.findSymbol(Asset_symbol);
+		
+	}
+
 }

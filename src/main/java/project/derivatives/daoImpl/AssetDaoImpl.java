@@ -87,7 +87,7 @@ public class AssetDaoImpl implements AssetDao {
 	@Override
 	public List<Asset> findAsset2(Long user_Id) {
 		List<Asset> a=  null;
-		String hql = "from asset where asset.asset_Id IN (select users_asset.asset_Id from users_asset where user_Id =?)";
+		String hql = "from asset where asset.Asset_Id IN (select users_asset.assets_Asset_Id from users_asset where users_userId =?)";
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		Query query = session.createQuery(hql);
@@ -109,6 +109,21 @@ public class AssetDaoImpl implements AssetDao {
 		session.getTransaction().commit();
 		session.close();
 		return Ast;
+	}
+
+	@Override
+	public Asset findSymbol(String Asset_symbol) {
+		// TODO Auto-generated method stub
+		Asset asset=  null;
+		String hql = "from asset where asset.Symbol =?";
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Query query = session.createQuery(hql);
+		 query.setParameter(0,Asset_symbol);
+		 asset= (Asset) query.uniqueResult();
+		 session.getTransaction().commit();
+			session.close();
+		return asset;
 	}
 
 }

@@ -10,29 +10,25 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import project.derivatives.dao.OptionsDao;
-import project.derivatives.model.Options;
-
-@Repository("optionsDao")
+import project.derivatives.dao.VolatilityDao;
+import project.derivatives.model.Volatility;
+@Repository("volatilityDao")
 @Transactional(propagation=Propagation.SUPPORTS, rollbackFor = Exception.class)
-public class OptionsDaoImpl implements OptionsDao {
-	
+public class VolatilityDaoImpl implements VolatilityDao{
 	@Autowired
 	SessionFactory sessionFactory;
 	
 	Session session;
-	
 	public void setSessionFactory(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
 	}
-
 	@Override
-	public void create(Options options) {
+	public void create(Volatility vol) {
 		// TODO Auto-generated method stub
 		session=sessionFactory.openSession();
 		session.beginTransaction();
-		if(options!=null){
-			session.save(options);
+		if(vol!=null){
+			session.save(vol);
 			session.getTransaction().commit();
 			session.close();
 		}
@@ -40,72 +36,74 @@ public class OptionsDaoImpl implements OptionsDao {
 	}
 
 	@Override
-	public void update(Options options) {
-		// TODO Auto-generated method stub
-		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.update(options);
-		session.getTransaction().commit();
-		session.close();
-		
-		
-	}
-
-	@Override
-	public Options edit(Long Contract_No) {
-		// TODO Auto-generated method stub
-		return findOContract(Contract_No);
-	}
-
-	@Override
-	public void delete(Long Contract_No) {
+	public void update(Volatility vol) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.delete(Contract_No);
+		session.update(vol);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public Options findOContract(Long Contract_No) {
+	public Volatility edit(Long volatility_Id) {
+		// TODO Auto-generated method stub
+		return findVol(volatility_Id);
+	}
+
+	@Override
+	public void delete(Long volatility_Id) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		Options opt= null;
-		opt = (Options) session.get(Options.class,Contract_No);
+		session.delete(volatility_Id);
 		session.getTransaction().commit();
 		session.close();
-		return opt;
+		
+	}
+
+	@Override
+	public Volatility findVol(Long volatility_Id) {
+		// TODO Auto-generated method stub
+		session = sessionFactory.openSession();
+		session.beginTransaction();
+		Volatility vola= null;
+		vola = (Volatility) session.get(Volatility.class,volatility_Id);
+		session.getTransaction().commit();
+		session.close();
+		return vola;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Options> findOContract2(Long user_Id) {
-		List<Options> optn=  null;
-		String hql = "from optionstable where optionstable.user_userId =?";
+	public List<Volatility> findVols(Long asset_ID) {
+		// TODO Auto-generated method stub
+		List<Volatility> volas=  null;
+		String hql = "from volatility where volatility.asset_Asset_Id =?";
 		session = sessionFactory.openSession();
 		session.beginTransaction();
 		Query query = session.createQuery(hql);
-		 query.setParameter(0, user_Id);
-		 optn= query.list();
+		 query.setParameter(0, asset_ID);
+		 volas= query.list();
 		 session.getTransaction().commit();
 			session.close();
-		return optn;
+		return volas;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Options> getAll() {
+	public List<Volatility> findVols2(String asset_name) {
 		// TODO Auto-generated method stub
-		session=sessionFactory.openSession();
+		List<Volatility> volas=  null;
+		String hql = "from volatility where volatility.asset_Asset_Id IN (select asset.Asset_Id from asset where Asset_Name =?)";
+		session = sessionFactory.openSession();
 		session.beginTransaction();
-		@SuppressWarnings("unchecked")
-		List<Options>Op= session.createCriteria(Options.class).list();
-		session.getTransaction().commit();
-		session.close();
-		
-		return Op;
+		Query query = session.createQuery(hql);
+		 query.setParameter(0, asset_name);
+		volas= query.list();
+		 session.getTransaction().commit();
+			session.close();
+		return volas;
 	}
 
 }
